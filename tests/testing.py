@@ -1,8 +1,7 @@
 import unittest
 import sys, os, re
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from JobTest.BusinessCardParser import BusinessCardParser
-from JobTest.ContactInfo import ContactInfo
+from BusinessCardParser import ContactInfo, BusinessCardParser
 class TestSuite(unittest.TestCase):
     """Test cases."""
 
@@ -12,7 +11,7 @@ class TestSuite(unittest.TestCase):
         Senior Software Engineer
         (410)555-1234
         msmith@asymmetrik.com"""
-        my_parser = BusinessCardParser()
+        my_parser = BusinessCardParser.BusinessCardParser()
         self.assertIsNotNone(my_parser)
         cleaned_card = my_parser.cleanDoc(business_card)
         self.assertIsInstance(cleaned_card, str)
