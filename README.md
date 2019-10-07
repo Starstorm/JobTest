@@ -20,7 +20,7 @@ python BusinessCardParser.py -f ../examples/example_3.txt
 ```
 If you'd prefer to manually enter your text, you can do that as well:
 ```
-python BusinessCardParser.py -t "Business Cart Text...."
+python BusinessCardParser.py -t "Business Card Text...."
 ```
 Finally, you can send the output to a file if you prefer:
 ```
