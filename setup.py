@@ -4,6 +4,9 @@ setup(
     version='1.0.0',
     packages=find_packages(),
     long_description=open('README.md').read(),
+	install_requires=[
+        "names_dataset",
+        "spacy"]
 )
 
 import subprocess
