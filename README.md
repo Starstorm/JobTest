@@ -6,8 +6,8 @@ This BusinessCardParser command line utility parses the results of an optical ch
 
 ### Basic Installation & Setup
 ```
-git clone https://github.com/Starstorm/BusinessCardParser.git
-cd BusinessCardParser
+git clone https://github.com/Starstorm/JobTest.git
+cd JobTest
 python setup.py install
 cd BusinessCardParser
 ```
