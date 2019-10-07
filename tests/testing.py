@@ -1,8 +1,8 @@
 import unittest
 import sys, os, re
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from BusinessCardParser.BusinessCardParser import BusinessCardParser
-from BusinessCardParser.ContactInfo import ContactInfo
+from JobTest.BusinessCardParser import BusinessCardParser
+from JobTest.ContactInfo import ContactInfo
 class TestSuite(unittest.TestCase):
     """Test cases."""
 
