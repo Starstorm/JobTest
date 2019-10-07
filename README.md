@@ -26,7 +26,11 @@ Finally, you can send the output to a file if you prefer:
 ```
 python BusinessCardParser.py -f ../examples/example_1.txt -o output_card_data.txt
 ```
-
+### Testing
+You can also test to make sure the various methods are functioning correctly. First, make sure you're in the tests directory:
+```
+python -m unittest testing
+```
 ### Josh's Notes
 So there were a few points to bring up.
 First and foremost, I was restricted by the interface requirements to making this card reader better. My selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference would be if there are two or more matches. A superior approach would be to have "Name_1", "Name_2", "Home Phone", "Cell Phone", etc. for each element. 
