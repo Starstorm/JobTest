@@ -33,7 +33,6 @@ python -m unittest testing
 ```
 ### Josh's Notes
 So there were a few points to bring up.
-First and foremost, I was restricted by the interface requirements to making this card reader better. My selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference would be if there are two or more matches. A superior approach would be to have "Name_1", "Name_2", "Home Phone", "Cell Phone", etc. for each element. 
+First and foremost, I was restricted by the interface requirements in terms of additional improvements for the card reader. Because of it, my selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference would be if there are two or more matches. Otherwise, I would have created additional fields such as "Home Phone", "Cell Phone", "Name One", "Name Two", etc. for each element. 
 
-The interface as designed underestimates the variations that can occur on business cards - there are business cards where there are two people listed, such as when a couple owns a business jointly. Additionally, I have seen multiple email addresses and multiple phone numbers - what if the home number and the cell number is provided? Ignoring the cell number because the interface mandates a string be returned and not a list is inherently limiting.
-Also, I added an extra capability - not only can the command line tool accept raw text, it'll also read text from a file. This should allow it an easier time functioning with newline characters especially.
+Also, I added an extra capability - not only can the command line tool accept raw text, it'll also read text from a file. This should allow it an easier time functioning with newline characters.
