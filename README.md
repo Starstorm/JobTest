@@ -7,12 +7,12 @@ This BusinessCardParser command line utility parses the results of an optical ch
 ### Basic Installation & Setup
 This installation presumes you already have Python 3 installed and usable with the command "Python". If you have both Python 2 and Pyhton 3 installed on your machine, you may need to change "python" to "python3" in the commands that follow. It was tested with Python 3.6 and 3.7. 
 
-To create your own custom virtual environment to test it in, if you have conda pre-installed, you can first run:
+To create your own custom virtual environment (recommended) to test it in, if you have conda pre-installed, you can first run:
 ```
 conda create -n TestingEnv python=3.7
-conda activate TestingEnv
+source activate TestingEnv
 ```
-Once that's ready, you can do the actual install:
+Next, you can do the actual install:
 ```
 git clone https://github.com/Starstorm/JobTest.git
 cd JobTest
@@ -30,7 +30,9 @@ If you'd prefer to manually enter your text, you can do that as well:
 ```
 python BusinessCardParser.py -t "Business Card Text...."
 ```
-Finally, you can send the output to a file if you prefer:
+However, keep in mind that the name parser works best in cases where there are newline characters.
+
+If desired, you can send the output to a file:
 ```
 python BusinessCardParser.py -f ../examples/example_1.txt -o output_card_data.txt
 ```
@@ -39,8 +41,12 @@ You can also test to make sure the various methods are functioning correctly. Fi
 ```
 python -m unittest testing
 ```
+If you're not in the tests directory when you run this command, you will likely get a ModuleError.
+
 ### Notes & Limitations
 So there were a few points to bring up.
-First and foremost, I was restricted by the interface requirements in terms of additional improvements for the card reader. Because the interface requires only Strings be returned instead of lists, my selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference should be if there are two or more matches. Otherwise, I would have created additional fields such as "Home Phone", "Cell Phone", "Name One", "Name Two", etc. for each element. 
+First, I was restricted by the interface requirements from improving the design further. Because the interface requires only Strings be returned instead of lists, my selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference should be if there are two or more matches. Otherwise, I would have created additional fields such as "Home Phone", "Cell Phone", "Name One", "Name Two", etc. for each element. 
 
-Also, I added an extra capability - not only can the command line tool accept raw text, it'll also read text from a file. This should allow it an easier time functioning with newline characters.
+Second, the name parser works best with newline characters present for the business card. It's arguable whether or not this is a limitation or a feature: a poor OCR device might not return newline characters all the time, but attempting to parse a human name out of a single massively long string versus a single line of that string are two very different tasks. Adding the dozens of extra lines of code needed for the former task might end up actually decreasing overall accuracy if the latter task is the only one that matters - you gain flexiblity but could potentially lose out on raw accuracy for the more focused task. What's more, given the advancements in neural network based OCR technology in recent years and the examples provided, I presumed that newline characters would be present. The phone number and email parsers should work equally well, newline characters or not.
+
+Finally, I added an extra capability - not only can the command line tool accept raw text, it'll also read text from a file and output to a file. Windows is not very fun to attempt to provide it a string argument with newline characters.
