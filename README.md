@@ -31,8 +31,8 @@ You can also test to make sure the various methods are functioning correctly. Fi
 ```
 python -m unittest testing
 ```
-### Josh's Notes
+### Notes & Limitations
 So there were a few points to bring up.
-First and foremost, I was restricted by the interface requirements in terms of additional improvements for the card reader. Because of it, my selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference would be if there are two or more matches. Otherwise, I would have created additional fields such as "Home Phone", "Cell Phone", "Name One", "Name Two", etc. for each element. 
+First and foremost, I was restricted by the interface requirements in terms of additional improvements for the card reader. Because the interface requires only Strings be returned instead of lists, my selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference should be if there are two or more matches. Otherwise, I would have created additional fields such as "Home Phone", "Cell Phone", "Name One", "Name Two", etc. for each element. 
 
 Also, I added an extra capability - not only can the command line tool accept raw text, it'll also read text from a file. This should allow it an easier time functioning with newline characters.
