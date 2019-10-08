@@ -30,6 +30,7 @@ class BusinessCardParser(object):
         import spacy, names_dataset
         self.name_db = names_dataset.NameDataset()
         self.name_ner = spacy.load('en_core_web_sm')
+        # Standard regex strings for phone numbers and email addresses
         self.phone_regex = '(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?'
         self.email_regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"""
         
@@ -70,20 +71,26 @@ class BusinessCardParser(object):
         email = "UNKNOWN"
         phone = "UNKNOWN"
         
-        # Split document into lines and scan for phone numbers and email addresses.
+        # Split the document into lines and scan for phone numbers and email addresses.
+        # While it works best with multiple lines, it also functions if newline characters are missing
         # Once again, find the "top" phone and the "top" email address - if multiple are provided, ignore the bottom ones.
+        # In this real world, this would not be ideal functionality, but given the restrictions of the interface it is the best
+        # that we can do
         document_lines = document.split("\n")
         for line in document_lines:
             phone_re = re.search(self.phone_regex,line)
             email_re = re.search(self.email_regex,line)
+            # If the line has a phone match, we haven't found a matching phone number yet, and the line doesn't start with a variant of "Fax"
             if phone_re and phone == "UNKNOWN" and not line.startswith(("Fax","fax","FAX")):
                 raw_phone_number = phone_re.group().strip()
                 phone = re.sub('[^0-9]','', raw_phone_number)
+            # If the line has an email match and we haven't found a matching email yet
             if email_re and email == "UNKNOWN":
                 email = email_re.group().strip()
         return email, phone
     
     def cleanDoc(self, document):
+        # simple cleaning of blank lines and tab characters
         doc_lines = document.split("\n")
         doc_cleaned = "\n".join([line.replace("\t"," ").strip() for line in doc_lines if line.strip() != ""])
         return doc_cleaned
