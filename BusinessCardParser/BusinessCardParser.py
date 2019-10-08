@@ -117,8 +117,12 @@ if __name__ == '__main__':
     
     # Get the business card text
     if my_args['file']:
-        with open(my_args['file'],"r") as card_file:
-            document = card_file.read()
+        try:
+            with open(my_args['file'],"r") as card_file:
+                document = card_file.read()
+        except:
+            print("[ERROR] You did not enter a valid file name.")
+            sys.exit(0)
     else:
         document = my_args['text']
        
