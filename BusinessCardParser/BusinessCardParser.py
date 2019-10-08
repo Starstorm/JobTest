@@ -17,13 +17,13 @@ class BusinessCardParser(object):
     Methods
     -------
     ContactInfo getContactInfo(String document)
-        Extracts the name, email address, and phone number from the provided document string. Meant for internal use.
+        Extracts the name, email address, and phone number from the provided document string.
     String extractName(String document)
-        Extracts the name from the provided document string
+        Extracts the name from the provided document string. Meant for internal use.
     String[] extractEmailPhone(String document)
         Extracts the email address and phone number from the provided document string. Meant for internal use.
     String cleanDoc(String document)
-        Conducts basic cleaning activities for the text to clear out excessive newline characters, trailing spaces, and tabs.
+        Conducts basic cleaning activities for the text to clear out excessive newline characters, trailing spaces, and tabs. Meant for internal use.
     """
 
     def __init__(self):
