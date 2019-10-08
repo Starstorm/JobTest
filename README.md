@@ -5,6 +5,14 @@ This BusinessCardParser command line utility parses the results of an optical ch
 ## Usage Instructions:
 
 ### Basic Installation & Setup
+This installation presumes you already have Python 3 installed and usable with the command "Python". If you have both Python 2 and Pyhton 3 installed on your machine, you may need to change "python" to "python3" in the commands that follow. It was tested with Python 3.6 and 3.7. 
+
+To create your own custom virtual environment to test it in, if you have conda pre-installed, you can first run:
+```
+conda create -n TestingEnv python=3.7
+conda activate TestingEnv
+```
+Once that's ready, you can do the actual install:
 ```
 git clone https://github.com/Starstorm/JobTest.git
 cd JobTest
